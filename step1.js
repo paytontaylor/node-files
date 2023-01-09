@@ -20,7 +20,3 @@ const cat = async (path) => {
 }
 
 // cat(argv[2])
-
-module.exports = {
-    cat: cat
-}
