@@ -2,21 +2,7 @@ const axios = require('axios')
 const fs = require('fs')
 const argv = process.argv
 
-const webCat = async (url) => {
-    res = await axios(url)
-        fs.readFile(res.data, 'utf-8', (err,data)=>{
-            if (err){
-                console.log('Error', err)
-                process.exit(1)
-            }
-            else {
-                console.log(data)
-                process.exit(0)
-            }
-        })
-}
-
-const cat = async (path) => {
+const cat = (path) => {
     fs.readFile(path, 'utf-8', (err, data) => {
         if (err){
             console.log('Error', err);
@@ -35,6 +21,21 @@ const cat = async (path) => {
     })
 }
 
+const webCat = async (url) => {
+    res = await axios(url)
+        fs.readFile(res.data, 'utf-8', (err,data)=>{
+            if (err){
+                console.log('Error', err)
+                process.exit(1)
+            }
+            else {
+                console.log(data)
+                process.exit(0)
+            }
+        })
+}
+
+
 const getFileOrUrl = (arg) => {
     if (arg.includes('http')){
         webCat(arg)
@@ -44,4 +45,4 @@ const getFileOrUrl = (arg) => {
     }
 }
 
-// getFileOrUrl(argv[2])
+getFileOrUrl(argv[2])
